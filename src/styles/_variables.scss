@@ -1,0 +1,36 @@
+:root {
+  /* 기존 컬러 */
+  --color-primary: #3b82f6;
+  --color-secondary: #f97316;
+  --color-neutral-light: #f9fafb;
+  --color-neutral-medium: #6b7280;
+  --color-neutral-dark: #111827;
+
+  /* 추가 컬러 변수 */
+  --color-success: #22c55e;
+  --color-error: #ef4444;
+  --color-warning: #fbbf24;
+  --color-info: #3b82f6;
+
+  /* 보더 색상 */
+  --border-light: #e5e7eb;
+  --border-medium: #d1d5db;
+
+  /* 그림자 */
+  --shadow-light: rgba(0, 0, 0, 0.05);
+  --shadow-medium: rgba(0, 0, 0, 0.1);
+
+  /* 폰트 사이즈 */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+
+  /* 스페이싱 (간격) */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+}

@@ -1,0 +1,78 @@
+.dark {
+  background-color: var(--color-neutral-dark);
+  color: var(--color-neutral-light);
+
+  svg {
+    fill: var(--color-neutral-light);
+  }
+
+  .darkModeToggle {
+    border: 1px solid var(--color-neutral-light);
+
+    .active {
+      background-color: var(--color-neutral-medium);
+      border-radius: 20px;
+    }
+  }
+}
+
+svg {
+  cursor: pointer;
+}
+
+button {
+  padding: 10px 20px;
+  border: 1px solid var(--color-neutral-dark);
+  border-radius: 10px;
+  cursor: pointer;
+}
+.darkModeToggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 16px;
+  width: fit-content;
+  border-radius: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.15); /* 라이트 모드에서 잘 보이도록 진한 테두리 */
+  background: rgba(255, 255, 255, 0.4); /* 조금 더 불투명 */
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  color: #222; /* 글자색 진하게 */
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.55); /* hover 시 더 선명 */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .toggleIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+  }
+
+  .active {
+    background: rgba(0, 0, 0, 0.08); /* active 배경 살짝 어둡게 */
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.08);
+    transform: scale(1.05);
+  }
+
+  &.dark {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+
+    .active {
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.3),
+        inset 0 0 4px rgba(255, 255, 255, 0.2);
+    }
+  }
+}

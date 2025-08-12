@@ -1,30 +1,27 @@
 "use client";
 
-import useDarkModeStore from "@/stores/useDarkModeStore";
+import { useHydratedDarkMode } from "@/stores/useDarkModeStore";
+import { useEffect } from "react";
 import DarkModeController from "./DarkModeController";
-import { Geist, Geist_Mono } from "next/font/google";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const DarkModeProvider = ({ children }) => {
-  const isDarkMode = useDarkModeStore((state) => state.isDarkMode);
+  const { isDarkMode, hasHydrated } = useHydratedDarkMode();
+
+  useEffect(() => {
+    if (hasHydrated) {
+      if (isDarkMode) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    }
+  }, [isDarkMode, hasHydrated]);
+
   return (
-    <body
-      className={`${geistSans.variable} ${geistMono.variable} ${
-        isDarkMode ? "dark" : ""
-      }`}
-    >
+    <>
       <DarkModeController />
       {children}
-    </body>
+    </>
   );
 };
 
