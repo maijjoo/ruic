@@ -1,6 +1,6 @@
 "use client";
 
-import useDarkModeStore from "@/stores/useDarkModeStore";
+import { useHydratedDarkMode } from "@/stores/useDarkModeStore";
 import {
   MdDarkMode,
   MdLightMode,
@@ -9,20 +9,21 @@ import {
 } from "react-icons/md";
 
 const DarkModeController = () => {
-  const isDarkMode = useDarkModeStore((state) => state.isDarkMode);
-  const toggleDarkMode = useDarkModeStore((state) => state.toggleDarkMode);
+  const { isDarkMode, toggleDarkMode, hasHydrated } = useHydratedDarkMode();
+
+  if (!hasHydrated) return null;
 
   const getIcons = () => {
     let icons = [];
     if (isDarkMode)
       icons = [
-        <MdDarkMode className="active" size={30} />,
+        <MdDarkMode size={30} key={"active"} />,
         <MdOutlineLightMode size={30} onClick={() => toggleDarkMode()} />,
       ];
     else
       icons = [
         <MdOutlineDarkMode size={30} onClick={() => toggleDarkMode()} />,
-        <MdLightMode className="active" size={30} />,
+        <MdLightMode size={30} key={"active"} />,
       ];
     return icons;
   };
@@ -31,7 +32,7 @@ const DarkModeController = () => {
     <nav>
       <div className="darkModeToggle">
         {getIcons().map((icon, idx) => (
-          <span className="toggleIcon" key={idx}>
+          <span className={`toggleIcon ${icon.key}`} key={idx}>
             {icon}
           </span>
         ))}
