@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "../styles/globals.scss";
-import DarkModeProvider from "@/components/common/DarkModeProvider";
+import DarkModeProvider from "@/components/theme/DarkModeProvider";
 
 export const metadata = {
   title: "Next.js 연습 프로젝트",
@@ -19,7 +19,11 @@ const geistMono = Geist_Mono({
 
 const RootLayout = ({ children }) => {
   return (
-    <html lang="ko" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="ko"
+      className={`${geistSans.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+    >
       <body>
         <DarkModeProvider>{children}</DarkModeProvider>
       </body>
