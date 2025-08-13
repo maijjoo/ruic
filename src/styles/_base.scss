@@ -26,63 +26,76 @@ button {
   border-radius: 10px;
   cursor: pointer;
 }
-.darkModeToggle {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 16px;
-  width: fit-content;
-  border-radius: 25px;
-  border: 1px solid rgba(0, 0, 0, 0.15); /* 라이트 모드에서 잘 보이도록 진한 테두리 */
-  background: rgba(255, 255, 255, 0.4); /* 조금 더 불투명 */
-  backdrop-filter: blur(10px) saturate(180%);
-  -webkit-backdrop-filter: blur(10px) saturate(180%);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  color: #222; /* 글자색 진하게 */
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.55); /* hover 시 더 선명 */
-    transform: translateY(-2px);
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
-  }
-
-  .toggleIcon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 6px;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-  }
-
-  .active {
-    background: rgba(0, 0, 0, 0.08); /* active 배경 살짝 어둡게 */
-    border-radius: 50%;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.08);
-    transform: scale(1.05);
-  }
-
-  &.dark {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #fff;
-
-    .active {
-      background: rgba(255, 255, 255, 0.15);
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.3),
-        inset 0 0 4px rgba(255, 255, 255, 0.2);
-    }
-  }
-}
 
 html {
+  --color-primary: #3b82f6;
+  --color-secondary: #f97316;
+  --color-neutral-light: #f9fafb;
+  --color-neutral-medium: #6b7280;
+  --color-neutral-dark: #111827;
+
   background-color: var(--color-neutral-light);
   color: var(--color-neutral-dark);
+  height: 100vh;
+
+  /* 선명한 패턴 배경 */
+  background-image: radial-gradient(
+      circle at 20% 30%,
+      var(--color-primary) 0%,
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      var(--color-secondary) 0%,
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      var(--color-neutral-medium) 0%,
+      transparent 60%
+    );
+  background-repeat: no-repeat;
+  background-size: 150% 150%;
+  animation: waveMove 20s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
 }
 
+/* 유리 레이어 */
+html::before {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.25); /* 반투명 */
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  z-index: 0;
+  pointer-events: none; /* 클릭 방지 */
+}
+
+@keyframes waveMove {
+  0% {
+    background-position: 20% 30%, 80% 70%, 50% 50%;
+  }
+  25% {
+    background-position: 25% 35%, 78% 68%, 52% 55%;
+  }
+  50% {
+    background-position: 22% 32%, 82% 72%, 48% 53%;
+  }
+  75% {
+    background-position: 24% 28%, 79% 75%, 51% 48%;
+  }
+  100% {
+    background-position: 20% 30%, 80% 70%, 50% 50%;
+  }
+}
+
+/* 다크 모드 */
 html.dark {
   background-color: var(--color-neutral-dark);
   color: var(--color-neutral-light);
+}
+
+html.dark::before {
+  background: rgba(0, 0, 0, 0.35);
 }

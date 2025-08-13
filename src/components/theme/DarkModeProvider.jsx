@@ -1,10 +1,10 @@
 import { ThemeProvider } from "next-themes";
-import DarkModeController from "./DarkModeController";
+import TopBarWrapper from "../wrapper/TopBarWrapper";
 
 const DarkModeProvider = ({ children }) => {
   return (
     <ThemeProvider attribute={"class"} defaultTheme="system">
-      <DarkModeController />
+      <TopBarWrapper />
       {children}
     </ThemeProvider>
   );
